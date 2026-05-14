@@ -46,7 +46,8 @@ Python Simulator ──► Kafka ──► Spark Structured Streaming ──► 
 ```
 big-data-pipeline/
 ├── docker-compose.yml              # Orchestrare toate serviciile
-├── .env                            # Variabile de configurare
+├── .env.example                    # Exemplu configurare locala
+├── .gitignore                      # .env este ignorat intentionat
 │
 ├── simulator/
 │   ├── Dockerfile
@@ -88,6 +89,27 @@ anomalii injectate aleator (probabilitate ~1.5%) pentru testarea detecției.
 - [Docker Desktop](https://www.docker.com/products/docker-desktop/) instalat și pornit
 - Minim **6 GB RAM** alocate Docker
 - Porturi libere: `3000`, `8080`, `8086`, `9092`
+
+## Configurare locala
+
+Proiectul poate porni direct dupa `git clone`, fara fisier `.env`, deoarece
+`docker-compose.yml` contine valori default pentru mediul demo local.
+
+Daca vrei sa modifici parole, token-uri sau numele bucketului InfluxDB, creeaza
+un fisier local `.env` pornind de la exemplu:
+
+```bash
+cp .env.example .env
+```
+
+Pe Windows PowerShell:
+
+```powershell
+Copy-Item .env.example .env
+```
+
+Fisierul `.env` este ignorat de Git intentionat, ca sa nu urcam parole sau
+token-uri locale in repository.
 
 ## Pornire (un singur comandă)
 
